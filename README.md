@@ -3,7 +3,7 @@
 A simple, lovable, and complete cross-platform inventory management system for pre-owned car dealerships.
 Accessible on desktop (Electron + React), mobile (React Native), and managed with a secure in-house Node.js/MongoDB backend.
 
-🚀 Features
+### 🚀 Features
 - Inventory Dashboard: Add, edit, and view all vehicles with detailed info and photos.
 - Vehicle Search & Filter: Find vehicles by VIN, make, model, year, mileage, title, and more.
 - Photo Uploads: Attach multiple images per vehicle.
@@ -15,7 +15,7 @@ Accessible on desktop (Electron + React), mobile (React Native), and managed wit
 - Responsive Design: Mobile-first, desktop-ready.
 - Simple local hosting: All data lives on the dealership’s infrastructure for privacy & security.
 
-🛠️ Tech Stack
+### 🛠️ Tech Stack
 - Backend: Node.js, Express, TypeScript, MongoDB (Mongoose ODM)
 - Frontend:
   * Desktop: Electron + React + TypeScript
