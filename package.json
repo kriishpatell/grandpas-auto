@@ -1,0 +1,29 @@
+{
+  "name": "grandpas-auto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev:shared": "npm run dev --workspace=shared",
+    "dev:mobile": "npm run start --workspace=frontend/mobile",
+    "dev:desktop": "npm run dev --workspace=frontend/desktop"
+  },
+  "private": true,
+  "workspaces": [
+    "frontend/mobile",
+    "frontend/desktop",
+    "shared"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kriishpatell/grandpas-auto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kriishpatell/grandpas-auto/issues"
+  },
+  "homepage": "https://github.com/kriishpatell/grandpas-auto#readme"
+}
