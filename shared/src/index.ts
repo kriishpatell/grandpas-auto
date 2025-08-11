@@ -1,8 +1,11 @@
+// Dependencies
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
-import vehiclesRouter from './routes/vehicles.js'; // Import your router here
+
+// Import router
+import router from './routes/router.js'; 
 
 dotenv.config();
 const app = express();
@@ -13,7 +16,7 @@ app.use(cors());
 app.use(helmet());
 
 // Use vehicle routes (all starting with /api/vehicles)
-app.use('/api/vehicles', vehiclesRouter);
+app.use('/api/', router);
 
 // Test backend running
 app.get('/api/', (_, res) => {
