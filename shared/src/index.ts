@@ -16,12 +16,7 @@ app.use(cors());
 app.use(helmet());
 
 // Use vehicle routes (all starting with /api/vehicles)
-app.use('/api/', router);
-
-// Test backend running
-app.get('/api/', (_, res) => {
-  res.json({ status: 'OK', message: 'Backend running' });
-});
+app.use('/', router);
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
