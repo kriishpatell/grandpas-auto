@@ -1,4 +1,5 @@
 import { Router } from 'express';
+
 import { Customer } from '../models/Customer.ts';
 
 const router = Router();

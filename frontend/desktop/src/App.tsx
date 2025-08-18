@@ -1,22 +1,27 @@
 import React, { useState } from 'react';
-import Login from './components/Login';
+import Login from './components/Login.tsx';
+import Signup from './components/Signup.tsx';
 
-function App() {
-  const [token, setToken] = useState('');
-  const [role, setRole] = useState('');
+const Dashboard = () => (
+  <div style={{ textAlign: 'center', marginTop: '4rem' }}>
+    <h2>Welcome to Grandpa's Auto Dashboard!</h2>
+    {/* Add your dashboard logic/components here */}
+  </div>
+);
 
-  if (!token) {
-    return <Login onAuth={(t, r) => { setToken(t); setRole(r); }} />;
+export default function App() {
+  const [view, setView] = useState<'login' | 'signup' | 'dashboard'>('signup');
+  const [token, setToken] = useState<string | null>(null);
+
+  if (!token && view === 'signup') {
+    return <Signup onRegistered={() => setView('login')} />;
+  }
+
+  if (!token && view === 'login') {
+    return <Login onAuth={t => { setToken(t); setView('dashboard'); }} />;
   }
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '4rem' }}>
-      <h2>Authenticated!</h2>
-      <p>Token: <code style={{ wordBreak: 'break-all', color: 'green' }}>{token}</code></p>
-      <p>Role: <strong>{role}</strong></p>
-      <button onClick={() => { setToken(''); setRole(''); }}>Log out</button>
-    </div>
+    <Dashboard />
   );
 }
-
-export default App;

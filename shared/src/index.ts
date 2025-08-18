@@ -7,13 +7,24 @@ import dotenv from 'dotenv';
 // Import router
 import router from './routes/router.js'; 
 
+import mongoose from 'mongoose';
+
 dotenv.config();
+
 const app = express();
 const PORT = process.env.PORT || 3000;
+mongoose.connect(process.env.MONGO_URI!);
 
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
+
+mongoose.connection.on('connected', () => {
+  console.log('MongoDB connection established!');
+});
+mongoose.connection.on('error', (error) => {
+  console.error('MongoDB connection error:', error);
+});
 
 // Use vehicle routes (all starting with /api/vehicles)
 app.use('/', router);

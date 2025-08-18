@@ -1,71 +1,30 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react';
+import { login } from '../api/auth';
 
-const API_URL = "http://localhost:3000/auth/login"; // Update if needed
+export default function Login({ onAuth }: { onAuth: (token: string) => void }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [msg, setMsg] = useState('');
 
-const Login: React.FC<{ onAuth: (token: string, role: string) => void }> = ({
-  onAuth,
-}) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [err, setErr] = useState("");
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErr("");
+    setMsg('');
     try {
-      const res = await axios.post(API_URL, { email, password });
-      onAuth(res.data.token, res.data.user.role);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (e: any) {
-      setErr(e?.response?.data?.error || "Login failed");
+      const data = await login(email, password);
+      onAuth(data.token);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      setMsg(err?.response?.data?.error || 'Login failed.');
     }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{
-        maxWidth: 500,
-        alignItems: "left",
-        margin: "1rem auto",
-        padding: 16,
-        border: "1px solid #ddd",
-        borderRadius: 8,
-      }}
-    >
+    <form onSubmit={submit} style={{ margin: '2rem auto', maxWidth: 320 }}>
       <h2>Login</h2>
-      <input
-        type="email"
-        autoFocus
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-        style={{ width: "100%", marginBottom: 12, padding: 8 }}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-        style={{ width: "100%", marginBottom: 12, padding: 8 }}
-      />
-      <button type="submit" style={{ width: "100%", padding: 8 }}>
-        Sign In
-      </button>
-      <button
-        type="button"
-        style={{
-          width: "50%",
-          padding: 8,
-        }}
-      >Register</button>
-
-      {err && <p style={{ color: "red", marginTop: 12 }}>{err}</p>}
+      <input required type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+      <input required type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+      <button type="submit" style={{ display: 'block', width: '100%', margin: '1rem 0' }}>Sign In</button>
+      {msg && <p style={{ color: 'red' }}>{msg}</p>}
     </form>
   );
-};
-
-export default Login;
+}

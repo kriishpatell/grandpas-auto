@@ -4,6 +4,7 @@ import usersRouter from './users.ts';
 import inspectionsRouter from './inspections.ts';
 import photosRouter from './photos.ts';
 import salesRouter from './sales.ts';
+import authRouter from './auth.ts';
 
 const router = Router();
 
@@ -12,5 +13,6 @@ router.use('/users', usersRouter);
 router.use('/inspections', inspectionsRouter);
 router.use('/photos', photosRouter);
 router.use('/sales', salesRouter);
+router.use('/auth', authRouter);
 
 export default router;
