@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:shared": "npm run dev --workspace=shared",
-    "dev:mobile": "npm run start --workspace=frontend/mobile",
-    "dev:desktop": "npm run dev --workspace=frontend/desktop"
+    "backend": "npm run dev --workspace=shared",
+    "mobile": "npm run start --workspace=frontend/mobile",
+    "desktop": "npm run dev --workspace=frontend/desktop"
   },
   "private": true,
   "workspaces": [
