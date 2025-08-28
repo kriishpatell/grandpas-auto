@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "backend": "npm run dev --workspace=shared",
+    "backend": "npm run dev --workspace=backend",
     "mobile": "npm run start --workspace=frontend/mobile",
     "desktop": "npm run dev --workspace=frontend/desktop"
   },
@@ -12,7 +12,7 @@
   "workspaces": [
     "frontend/mobile",
     "frontend/desktop",
-    "shared"
+    "backend"
   ],
   "repository": {
     "type": "git",
