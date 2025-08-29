@@ -1,16 +1,15 @@
-// src/main/app.ts
 import { app, BrowserWindow } from "electron";
 import path from "node:path";
 import { registerIpc } from "./ipc";
 
 let win: BrowserWindow | null = null;
 
-export async function createWindow() {
+async function createWindow() {
   win = new BrowserWindow({
     width: 1280,
     height: 720,
     webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
+      preload: path.join(__dirname, "../preload/index.js"),
       contextIsolation: true,
       nodeIntegration: false,
     },
@@ -21,11 +20,14 @@ export async function createWindow() {
     await win.loadURL(process.env.VITE_DEV_SERVER_URL);
     win.webContents.openDevTools({ mode: "detach" });
   } else {
-    await win.loadFile(path.join(__dirname, "../renderer/index.html"));
+    await win.loadFile(path.join(__dirname, "../index.html"));
   }
 }
 
-app.whenReady().then(() => { registerIpc(); createWindow(); });
+app.whenReady().then(() => {
+  registerIpc();
+  createWindow();
+});
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
